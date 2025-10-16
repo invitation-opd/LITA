@@ -9,13 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* ========================================================== */
-        /* CSS STYLES (SOLUSI STABILITAS LAYAR PENUH) */
+        /* CSS STYLES (SOLUSI STABILITAS + GAMBAR BACKGROUND) */
         /* ========================================================== */
 
         /* Mengatur HTML dan BODY untuk stabilitas tinggi layar */
         html {
             height: 100%;
-            overflow-x: hidden; /* Sembunyikan scroll horizontal */
+            overflow-x: hidden; 
         }
         
         :root {
@@ -26,27 +26,49 @@
             --color-red: #FF0000;
             --font-script: 'Great Vibes', cursive;
             --font-main: 'Poppins', sans-serif;
-            font-size: 16px; /* Base font size */
+            font-size: 16px; 
         }
 
         body {
             margin: 0; padding: 0; 
             color: white; 
             font-family: var(--font-main); 
-            height: 100%; /* Penting untuk elemen full-height */
+            height: 100%; 
             
-            /* Latar belakang bias gold */
-            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 1) 70%);
-            background-attachment: fixed; /* Latar belakang tetap saat scroll */
-            overflow: hidden; /* PENTING: Mencegah body scroll, karena konten utama akan fixed */
+            /* LATAR BELAKANG GAMBAR */
+            background-image: url('IMG_1341.jpg');
+            background-size: cover; 
+            background-position: center 30%; /* Sedikit naik agar wajah lebih terlihat */
+            background-attachment: fixed; 
+            
+            overflow: hidden; /* Mencegah body scroll */
         }
         
+        /* LAPISAN OVERLAY (EFEK REDUP DAN GOLD GRADIENT) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Di bawah konten utama (container) */
+            
+            /* Lapisan gelap (0.5 opacity) + Gradient Gold Anda */
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 70%);
+            
+            background-attachment: fixed;
+        }
+
         /* ---------------------------------------------------------- */
         /* Landing Page */
         /* ---------------------------------------------------------- */
         #landing-page {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
-            background-color: var(--color-black); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1s ease-in-out; text-align: center;
+            background-color: rgba(0, 0, 0, 0.9); /* Tambah opasitas agar lebih mudah dibaca */
+            z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1s ease-in-out; text-align: center;
         }
         #landing-page .intro-text {
             color: white; 
@@ -61,7 +83,7 @@
             margin-bottom: 3.125rem;
         }
 
-        /* Main Invitation Button */
+        /* Main Invitation Button (CSSnya tidak berubah) */
         .main-cta-button {
             background: var(--color-gold); 
             color: var(--color-black); 
@@ -81,34 +103,34 @@
         }
 
         /* ---------------------------------------------------------- */
-        /* Background Animation */
+        /* Background Animation (Z-index ditingkatkan) */
         /* ---------------------------------------------------------- */
         .particle-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; 
+            z-index: 2; /* Lebih tinggi dari body::before */
         }
         .particle { position: absolute; border-radius: 50%; opacity: 0.8; animation: moveParticles linear infinite; filter: blur(0.5px); }
         @keyframes moveParticles { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 20% { opacity: 0.6; } 50% { opacity: 0.9; } 80% { opacity: 0.6; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
 
         /* ---------------------------------------------------------- */
-        /* Main Content - SOLUSI: FIXED POSITIONING */
+        /* Main Content (Z-index ditingkatkan) */
         /* ---------------------------------------------------------- */
         .container {
-            /* PENTING: Mengubah posisi dari relative menjadi fixed agar stabil full screen */
             position: fixed; 
             top: 0; 
             left: 0; 
             width: 100%;
-            height: 100vh; /* Selalu penuh layar */
-            z-index: 10; 
+            height: 100vh; 
+            z-index: 10; /* Paling tinggi setelah tombol musik/landing */
             display: none;
             flex-direction: column; 
             align-items: center; 
-            justify-content: center; /* Memastikan frame di tengah layar */
+            justify-content: center; 
             text-align: center; 
-            padding: 1.25rem; /* Padding layar */
+            padding: 1.25rem; 
         }
         
-        /* Invitation Frame and Text Styling */
+        /* Invitation Frame and Text Styling (Tidak Berubah) */
         .invitation-frame { 
             background: rgba(0, 0, 0, 0.85); 
             border: 4px solid var(--color-gold); 
@@ -118,13 +140,12 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); 
             border-radius: 5px; 
             position: relative; 
-            /* PENTING: Izinkan scroll HANYA di dalam frame jika konten terlalu panjang */
-            max-height: 90vh; /* Batasi tinggi maksimal frame */
+            max-height: 90vh; 
             overflow-y: auto; 
-            margin: 0; /* Hapus margin vertikal agar Flexbox bisa memposisikannya */
+            margin: 0; 
         }
         
-        /* ... frame decorations (dibiarkan dalam px) ... */
+        /* ... (CSS lainnya tidak berubah) ... */
         .invitation-frame::before, .invitation-frame::after { content: ''; position: absolute; background: var(--color-gold); width: 30px; height: 4px; }
         .invitation-frame::before { top: -4px; left: -4px; }
         .invitation-frame::after { top: -4px; right: -4px; }
@@ -166,7 +187,6 @@
             font-weight: 500;
         }
 
-        /* Detail Item yang tersisa (Venue) */
         .detail-item { 
             margin: 0.625rem 0; 
             font-size: 1rem; 
@@ -192,9 +212,6 @@
         }
         .dresscode span { color: var(--color-gold); }
         
-        /* ---------------------------------------------------------- */
-        /* Countdown Timer CSS */
-        /* ---------------------------------------------------------- */
         #countdown { 
             margin: 1.875rem 0 1.25rem; 
             padding: 0.9375rem 0; 
@@ -223,9 +240,6 @@
             text-transform: uppercase;
         }
 
-        /* ---------------------------------------------------------- */
-        /* Location & Buttons */
-        /* ---------------------------------------------------------- */
         .location-section { width: 100%; margin-top: 1.875rem; }
         .map-container { border: 2px solid var(--color-gold); height: 15.625rem; margin-top: 0.9375rem; overflow: hidden; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
         .map-container iframe { width: 100%; height: 100%; border: none; }
