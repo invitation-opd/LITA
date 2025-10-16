@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Littavya's 30th Birthday Invitation - Black Owl Surabaya</title>
+    <title>Littavya 30th Birthday Invitation - Black Owl Surabaya</title>
     <link rel="preload" href="https://fonts.gstatic.com/s/greatvibes/v14/RWmMoKWRJgYcSQc3BVgGzC8c.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgM5WFRfL.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
