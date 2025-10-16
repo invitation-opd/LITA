@@ -1,22 +1,21 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Littavya 30th Birthday Invitation - Black Owl Surabaya</title>
+    <title>Littavya's 30th Birthday Invitation - Black Owl Surabaya</title>
     <link rel="preload" href="https://fonts.gstatic.com/s/greatvibes/v14/RWmMoKWRJgYcSQc3BVgGzC8c.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgM5WFRfL.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* ========================================================== */
-        /* CSS STYLES (IMPROVED UNITS AND STABILITY) */
+        /* CSS STYLES (SOLUSI STABILITAS LAYAR PENUH) */
         /* ========================================================== */
 
         /* Mengatur HTML dan BODY untuk stabilitas tinggi layar */
-        html, body {
+        html {
             height: 100%;
-            /* Mengizinkan scroll vertikal secara umum jika konten melebihi layar */
-            overflow-x: hidden; /* Tetap sembunyikan scroll horizontal yang tidak perlu */
+            overflow-x: hidden; /* Sembunyikan scroll horizontal */
         }
         
         :root {
@@ -34,18 +33,19 @@
             margin: 0; padding: 0; 
             color: white; 
             font-family: var(--font-main); 
-            /* overflow-x: hidden; Dihapus karena sudah ada di html, body */
+            height: 100%; /* Penting untuk elemen full-height */
             
             /* Latar belakang bias gold */
             background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 1) 70%);
             background-attachment: fixed; /* Latar belakang tetap saat scroll */
+            overflow: hidden; /* PENTING: Mencegah body scroll, karena konten utama akan fixed */
         }
         
         /* ---------------------------------------------------------- */
         /* Landing Page */
         /* ---------------------------------------------------------- */
         #landing-page {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; /* Menggunakan 100vh untuk memastikan penuh layar */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
             background-color: var(--color-black); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1s ease-in-out; text-align: center;
         }
         #landing-page .intro-text {
@@ -90,29 +90,24 @@
         @keyframes moveParticles { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 20% { opacity: 0.6; } 50% { opacity: 0.9; } 80% { opacity: 0.6; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
 
         /* ---------------------------------------------------------- */
-        /* Main Content - Diperbarui untuk fokus portrait */
+        /* Main Content - SOLUSI: FIXED POSITIONING */
         /* ---------------------------------------------------------- */
         .container {
-            position: relative; 
+            /* PENTING: Mengubah posisi dari relative menjadi fixed agar stabil full screen */
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            height: 100vh; /* Selalu penuh layar */
             z-index: 10; 
             display: none;
             flex-direction: column; 
             align-items: center; 
-            /* Menggunakan min-height: 100vh agar halaman undangan minimal 1 layar penuh */
-            min-height: 100vh; 
+            justify-content: center; /* Memastikan frame di tengah layar */
             text-align: center; 
-            padding: 1.25rem; 
-            padding-bottom: 5rem;
-            /* Flexbox mengatur posisi di tengah jika konten tidak memenuhi 100vh */
-            justify-content: center; 
+            padding: 1.25rem; /* Padding layar */
         }
-        /* Media query untuk layar besar agar konten tidak terlalu menempel ke atas/bawah */
-        @media (min-height: 800px) {
-            .container {
-                justify-content: center; /* Memastikan frame di tengah layar besar */
-            }
-        }
-
+        
         /* Invitation Frame and Text Styling */
         .invitation-frame { 
             background: rgba(0, 0, 0, 0.85); 
@@ -123,9 +118,12 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); 
             border-radius: 5px; 
             position: relative; 
-            margin-top: 5vh; /* Sedikit jarak atas */
-            margin-bottom: 5vh; /* Sedikit jarak bawah untuk elemen lain */
+            /* PENTING: Izinkan scroll HANYA di dalam frame jika konten terlalu panjang */
+            max-height: 90vh; /* Batasi tinggi maksimal frame */
+            overflow-y: auto; 
+            margin: 0; /* Hapus margin vertikal agar Flexbox bisa memposisikannya */
         }
+        
         /* ... frame decorations (dibiarkan dalam px) ... */
         .invitation-frame::before, .invitation-frame::after { content: ''; position: absolute; background: var(--color-gold); width: 30px; height: 4px; }
         .invitation-frame::before { top: -4px; left: -4px; }
@@ -168,6 +166,7 @@
             font-weight: 500;
         }
 
+        /* Detail Item yang tersisa (Venue) */
         .detail-item { 
             margin: 0.625rem 0; 
             font-size: 1rem; 
@@ -272,11 +271,6 @@
             .title-age { font-size: 4rem; }
             .time-value { font-size: 1.8rem; }
             #countdown { gap: 0.5rem; }
-            /* Penyesuaian frame di mobile agar tidak terlalu memakan margin vertikal */
-            .invitation-frame {
-                margin-top: 2rem;
-                margin-bottom: 2rem;
-            }
         }
     </style>
 </head>
@@ -314,6 +308,167 @@
                     We are thrilled to invite you to celebrate this special day.
                 </p>
                 
-                <p class="detail-item">
-                    **Date:** Saturday, October 28, 2025
-                </p>
+                <div class="detail-item">
+                    <span class="venue-name" style="font-size: 1.2em;">
+                        Sabtu, 28 Oktober 2025
+                    </span>
+                    <span class="venue-location" style="font-size: 1em; margin-top: 5px; opacity: 1;">
+                        Pukul 7.00 PM WIB - Selesai
+                    </span>
+                </div>
+
+                <div class="detail-item">
+                    <span class="venue-name">
+                        Black Owl Surabaya
+                    </span>
+                    <span class="venue-location">
+                        Room Jackson
+                        <br>
+                        [Lokasi Pesta]
+                    </span>
+                </div>
+
+                <p class="dresscode">Dresscode: <span>BLACK GOLD</span></p>
+            </section>
+            
+            <section class="countdown-section">
+                <h3 style="color:var(--color-gold); font-size:1.1em; margin-bottom:10px;">Countdown to the Event</h3>
+                
+                <div id="countdown" aria-live="polite">
+                    <div><span class="time-value" id="days">00</span><span class="time-label">Days</span></div>
+                    <div><span class="time-value" id="hours">00</span><span class="time-label">Hours</span></div>
+                    <div><span class="time-value" id="minutes">00</span><span class="time-label">Minutes</span></div>
+                    <div><span class="time-value" id="seconds">00</span><span class="time-label">Seconds</span></div>
+                </div>
+            </section>
+
+            <section class="location-section">
+                <h3 style="color:var(--color-gold); font-size:1.1em;">Location Map</h3>
+                
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.510345091807!2d112.7238242!3d-7.2929427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbdf936e4f3f%3A0x6e26922384a622a7!2sBlack%20Owl%20Dine%20%26%20Wines%20Surabaya!5e0!3m2!1sen!2sid!4v1717315200000!5m2!1sen!2sid"
+                        title="Map to Black Owl Surabaya"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <a href="https://maps.app.goo.gl/95tY7Q3nQYg5d625A" target="_blank" class="cta-button">
+                    Get Directions (Google Maps)
+                </a>
+            </section>
+            
+            <section class="rsvp-section">
+                <h3 style="color:var(--color-gold); font-size:1.1em;">RSVP</h3>
+                <p style="font-size:0.9em; opacity:0.9;">Kindly confirm your attendance:</p>
+                <button class="cta-button rsvp-button" onclick="handleRsvp('attend');">I Will Attend</button>
+                <button class="cta-button rsvp-button" style="background: white; color: black; margin-left: 10px;" onclick="handleRsvp('decline');">Regretfully Decline</button>
+            </section>
+            
+            <p style="margin-top: 40px; font-size: 0.8em; color: #aaa; opacity:0.7;">See you at Black Owl!</p>
+
+        </article>
+
+    </main>
+
+    <button id="music-button" onclick="toggleMusic()" style="display: none;" aria-label="Play/Pause Background Music">♫</button> 
+
+    <script>
+        // ... (JavaScript tidak berubah) ...
+        const music = document.getElementById('party-music');
+        const musicButton = document.getElementById('music-button');
+        const landingPage = document.getElementById('landing-page');
+        const mainInvitation = document.getElementById('main-invitation');
+        let musicPlaying = false; 
+
+        function openInvitation() {
+            music.play().then(() => {
+                musicPlaying = true;
+                musicButton.innerHTML = '♫'; 
+            }).catch(error => {
+                console.warn("Autoplay was blocked:", error);
+                musicButton.innerHTML = '♪'; 
+            });
+
+            landingPage.style.opacity = '0';
+            setTimeout(() => {
+                landingPage.style.display = 'none';
+                mainInvitation.style.display = 'flex'; 
+                musicButton.style.display = 'block'; 
+            }, 1000); 
+        }
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                music.pause();
+                musicButton.innerHTML = '♪'; 
+                musicPlaying = false;
+            } else {
+                music.play().then(() => {
+                    musicButton.innerHTML = '♫'; 
+                    musicPlaying = true;
+                }).catch(error => {
+                    console.error("Playback failed:", error);
+                });
+            }
+        }
+
+        function handleRsvp(status) {
+            if (status === 'attend') {
+                alert('Thank you! Your RSVP has been received.');
+            } else {
+                alert('We will miss you! If you change your mind, let Littavya know.');
+            }
+        }
+        
+        const targetDate = new Date("Oct 28, 2025 19:00:00").getTime(); 
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            const formatTime = (time) => time < 10 ? '0' + time : time;
+
+            document.getElementById("days").innerHTML = formatTime(days);
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "<h3 style='color:var(--color-gold);'>THE PARTY IS LIVE!</h3>";
+            }
+        }, 1000);
+        
+        const particleContainer = document.getElementById('particle-bg');
+        const numParticles = 80;
+        const particleColors = [
+            'var(--color-gold)', 'var(--color-light-gold)', 'var(--color-cream)', 'rgba(255, 255, 255, 0.7)'
+        ];
+
+        for (let i = 0; i < numParticles; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 4 + 1;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 20 + 10;
+            const delay = Math.random() * 20;
+            const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}vw`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.backgroundColor = color;
+            particle.style.opacity = Math.random() * 0.6 + 0.3;
+            particleContainer.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
