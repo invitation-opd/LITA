@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,13 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* ========================================================== */
-        /* CSS STYLES (SOLUSI STABILITAS + GAMBAR BACKGROUND) */
+        /* CSS STYLES (SOLUSI STABILITAS LAYAR PENUH) */
         /* ========================================================== */
 
         /* Mengatur HTML dan BODY untuk stabilitas tinggi layar */
         html {
             height: 100%;
-            overflow-x: hidden; 
+            overflow-x: hidden; /* Sembunyikan scroll horizontal */
         }
         
         :root {
@@ -26,25 +26,26 @@
             --color-red: #FF0000;
             --font-script: 'Great Vibes', cursive;
             --font-main: 'Poppins', sans-serif;
-            font-size: 16px; 
+            font-size: 16px; /* Base font size */
         }
 
         body {
             margin: 0; padding: 0; 
             color: white; 
             font-family: var(--font-main); 
-            height: 100%; 
+            height: 100%; /* Penting untuk elemen full-height */
             
-            /* LATAR BELAKANG GAMBAR */
-            background-image: url('IMG_1341.jpg');
-            background-size: cover; 
-            background-position: center 30%; /* Sedikit naik agar wajah lebih terlihat */
-            background-attachment: fixed; 
-            
-            overflow: hidden; /* Mencegah body scroll */
+            /* Background Gambar Anda (DIPERBAIKI) */
+            background-image: url('uploaded:IMG_1341.jpg-ded95ac8-9cb7-4f9f-b259-18a702a0e0c5');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Latar belakang tetap saat scroll */
+            overflow: hidden; /* Mencegah body scroll, karena konten utama fixed */
+            position: relative; /* Diperlukan untuk pseudo-element overlay */
         }
-        
-        /* LAPISAN OVERLAY (EFEK REDUP DAN GOLD GRADIENT) */
+
+        /* Overlay semi-transparan untuk membuat gambar background lebih redup dan samar */
         body::before {
             content: '';
             position: fixed;
@@ -52,23 +53,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1; /* Di bawah konten utama (container) */
-            
-            /* Lapisan gelap (0.5 opacity) + Gradient Gold Anda */
-            background: 
-                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 70%);
-            
-            background-attachment: fixed;
+            background-color: rgba(0, 0, 0, 0.65); /* Hitam semi-transparan */
+            backdrop-filter: blur(3px); /* Efek samar/blur pada background */
+            z-index: 2; /* Di atas background tapi di bawah konten utama */
         }
-
+        
         /* ---------------------------------------------------------- */
         /* Landing Page */
         /* ---------------------------------------------------------- */
         #landing-page {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
-            background-color: rgba(0, 0, 0, 0.9); /* Tambah opasitas agar lebih mudah dibaca */
-            z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1s ease-in-out; text-align: center;
+            background-color: var(--color-black); z-index: 99; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1s ease-in-out; text-align: center;
         }
         #landing-page .intro-text {
             color: white; 
@@ -83,7 +78,7 @@
             margin-bottom: 3.125rem;
         }
 
-        /* Main Invitation Button (CSSnya tidak berubah) */
+        /* Main Invitation Button */
         .main-cta-button {
             background: var(--color-gold); 
             color: var(--color-black); 
@@ -103,34 +98,34 @@
         }
 
         /* ---------------------------------------------------------- */
-        /* Background Animation (Z-index ditingkatkan) */
+        /* Background Animation */
         /* ---------------------------------------------------------- */
         .particle-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; 
-            z-index: 2; /* Lebih tinggi dari body::before */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; 
         }
         .particle { position: absolute; border-radius: 50%; opacity: 0.8; animation: moveParticles linear infinite; filter: blur(0.5px); }
         @keyframes moveParticles { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 20% { opacity: 0.6; } 50% { opacity: 0.9; } 80% { opacity: 0.6; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
 
         /* ---------------------------------------------------------- */
-        /* Main Content (Z-index ditingkatkan) */
+        /* Main Content - SOLUSI: FIXED POSITIONING */
         /* ---------------------------------------------------------- */
         .container {
+            /* PENTING: Mengubah posisi dari relative menjadi fixed agar stabil full screen */
             position: fixed; 
             top: 0; 
             left: 0; 
             width: 100%;
-            height: 100vh; 
-            z-index: 10; /* Paling tinggi setelah tombol musik/landing */
+            height: 100vh; /* Selalu penuh layar */
+            z-index: 10; /* Pastikan di atas overlay */
             display: none;
             flex-direction: column; 
             align-items: center; 
-            justify-content: center; 
+            justify-content: center; /* Memastikan frame di tengah layar */
             text-align: center; 
-            padding: 1.25rem; 
+            padding: 1.25rem; /* Padding layar */
         }
         
-        /* Invitation Frame and Text Styling (Tidak Berubah) */
+        /* Invitation Frame and Text Styling */
         .invitation-frame { 
             background: rgba(0, 0, 0, 0.85); 
             border: 4px solid var(--color-gold); 
@@ -140,12 +135,13 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); 
             border-radius: 5px; 
             position: relative; 
-            max-height: 90vh; 
+            /* PENTING: Izinkan scroll HANYA di dalam frame jika konten terlalu panjang */
+            max-height: 90vh; /* Batasi tinggi maksimal frame */
             overflow-y: auto; 
-            margin: 0; 
+            margin: 0; /* Hapus margin vertikal agar Flexbox bisa memposisikannya */
         }
         
-        /* ... (CSS lainnya tidak berubah) ... */
+        /* ... frame decorations (dibiarkan dalam px) ... */
         .invitation-frame::before, .invitation-frame::after { content: ''; position: absolute; background: var(--color-gold); width: 30px; height: 4px; }
         .invitation-frame::before { top: -4px; left: -4px; }
         .invitation-frame::after { top: -4px; right: -4px; }
@@ -187,6 +183,7 @@
             font-weight: 500;
         }
 
+        /* Detail Item yang tersisa (Venue) */
         .detail-item { 
             margin: 0.625rem 0; 
             font-size: 1rem; 
@@ -212,6 +209,9 @@
         }
         .dresscode span { color: var(--color-gold); }
         
+        /* ---------------------------------------------------------- */
+        /* Countdown Timer CSS */
+        /* ---------------------------------------------------------- */
         #countdown { 
             margin: 1.875rem 0 1.25rem; 
             padding: 0.9375rem 0; 
@@ -240,6 +240,9 @@
             text-transform: uppercase;
         }
 
+        /* ---------------------------------------------------------- */
+        /* Location & Buttons */
+        /* ---------------------------------------------------------- */
         .location-section { width: 100%; margin-top: 1.875rem; }
         .map-container { border: 2px solid var(--color-gold); height: 15.625rem; margin-top: 0.9375rem; overflow: hidden; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
         .map-container iframe { width: 100%; height: 100%; border: none; }
@@ -324,10 +327,10 @@
                 
                 <div class="detail-item">
                     <span class="venue-name" style="font-size: 1.2em;">
-                        Sabtu, 28 Oktober 2025
+                        Saturday, October 28th, 2025
                     </span>
                     <span class="venue-location" style="font-size: 1em; margin-top: 5px; opacity: 1;">
-                        Pukul 7.00 PM WIB - Selesai
+                        7:00 PM WIB - Finish
                     </span>
                 </div>
 
@@ -336,9 +339,9 @@
                         Black Owl Surabaya
                     </span>
                     <span class="venue-location">
-                        Room Jackson
+                        Jackson Room
                         <br>
-                        [Lokasi Pesta]
+                        [Party Location]
                     </span>
                 </div>
 
@@ -430,11 +433,31 @@
         }
 
         function handleRsvp(status) {
+            let message = "";
             if (status === 'attend') {
-                alert('Thank you! Your RSVP has been received.');
+                message = 'Thank you! Your RSVP has been received.';
             } else {
-                alert('We will miss you! If you change your mind, let Littavya know.');
+                message = 'We will miss you! If you change your mind, let Littavya know.';
             }
+            // Mengganti alert dengan tindakan RSVP yang lebih realistis (misalnya, kirim ke WhatsApp)
+            
+            // CONTOH: Mengarahkan ke WhatsApp dengan pesan RSVP
+            const name = "Guest"; // Anda dapat mengganti ini dengan cara mengambil nama tamu jika diinginkan
+            const whatsappNumber = "6281234567890"; // Ganti dengan nomor WhatsApp penerima RSVP
+            let rsvpMessage = "";
+
+            if (status === 'attend') {
+                rsvpMessage = `Hello Littavya, I (${name}) will happily attend your 30th birthday party at Black Owl on October 28th.`;
+            } else {
+                rsvpMessage = `Hello Littavya, I (${name}) regretfully decline the invitation for your 30th birthday party. I wish you a very happy birthday!`;
+            }
+
+            // Enkode pesan untuk URL
+            const encodedMessage = encodeURIComponent(rsvpMessage);
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Buka link WhatsApp
+            window.open(whatsappLink, '_blank');
         }
         
         const targetDate = new Date("Oct 28, 2025 19:00:00").getTime(); 
