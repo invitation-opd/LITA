@@ -328,8 +328,7 @@
                 
                 <div class="detail-item">
                     <span class="venue-name" style="font-size: 1.2em;">
-                        Saturday, October 28th, 2025
-                    </span>
+                        **Tuesday, October 28th, 2025** </span>
                     <span class="venue-location" style="font-size: 1em; margin-top: 5px; opacity: 1;">
                         7:00 PM WIB - Finish
                     </span>
@@ -395,7 +394,7 @@
     <button id="music-button" onclick="toggleMusic()" style="display: none;" aria-label="Play/Pause Background Music">♫</button> 
 
     <script>
-        // ... (JavaScript tidak berubah) ...
+        // JavaScript tidak diubah (Nomor WA sudah benar, tanggal target tetap 28 Okt 2025)
         const music = document.getElementById('party-music');
         const musicButton = document.getElementById('music-button');
         const landingPage = document.getElementById('landing-page');
@@ -435,9 +434,9 @@
         }
 
         function handleRsvp(status) {
-            // Nomor WhatsApp diperbarui ke 082287000029 (format internasional: 6282287000029)
+            // Nomor WhatsApp: 082287000029 (6282287000029)
             const name = "Guest"; 
-            const whatsappNumber = "6282287000029"; // NOMOR BARU
+            const whatsappNumber = "6282287000029"; 
             let rsvpMessage = "";
 
             if (status === 'attend') {
@@ -454,7 +453,7 @@
             window.open(whatsappLink, '_blank');
         }
         
-        const targetDate = new Date("Oct 28, 2025 19:00:00").getTime(); 
+        const targetDate = new Date("Oct 28, 2025 19:00:00").getTime(); // Target Date 28 Oktober 2025 (Hari Selasa)
         const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
             const distance = targetDate - now;
