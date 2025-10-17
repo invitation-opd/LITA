@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -347,7 +347,8 @@
                 </div>
 
                 <p class="dresscode">Dresscode: <span>BLACK</span></p>
-                </section>
+
+            </section>
             
             <section class="countdown-section">
                 <h3 style="color:var(--color-gold); font-size:1.1em; margin-bottom:10px;">Countdown to the Event</h3>
@@ -434,16 +435,9 @@
         }
 
         function handleRsvp(status) {
-            let message = "";
-            if (status === 'attend') {
-                message = 'Thank you! Your RSVP has been received.';
-            } else {
-                message = 'We will miss you! If you change your mind, let Littavya know.';
-            }
-            
-            // CONTOH: Mengarahkan ke WhatsApp dengan pesan RSVP
-            const name = "Guest"; // Anda dapat mengganti ini dengan cara mengambil nama tamu jika diinginkan
-            const whatsappNumber = "6281234567890"; // Ganti dengan nomor WhatsApp penerima RSVP
+            // Nomor WhatsApp diperbarui ke 082287000029 (format internasional: 6282287000029)
+            const name = "Guest"; 
+            const whatsappNumber = "6282287000029"; // NOMOR BARU
             let rsvpMessage = "";
 
             if (status === 'attend') {
