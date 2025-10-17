@@ -35,7 +35,7 @@
             font-family: var(--font-main); 
             height: 100%; /* Penting untuk elemen full-height */
             
-            /* Background Gambar Anda (DIPERBAIKI) */
+            /* Background Gambar Anda */
             background-image: url('uploaded:IMG_1341.jpg-ded95ac8-9cb7-4f9f-b259-18a702a0e0c5');
             background-size: cover;
             background-position: center;
@@ -207,6 +207,7 @@
             color: white; 
             margin-top: 1.5625rem; 
         }
+        /* Style untuk dresscode tetap emas, hanya teksnya yang diubah */
         .dresscode span { color: var(--color-gold); }
         
         /* ---------------------------------------------------------- */
@@ -345,8 +346,8 @@
                     </span>
                 </div>
 
-                <p class="dresscode">Dresscode: <span>BLACK GOLD</span></p>
-            </section>
+                <p class="dresscode">Dresscode: <span>BLACK</span></p>
+                </section>
             
             <section class="countdown-section">
                 <h3 style="color:var(--color-gold); font-size:1.1em; margin-bottom:10px;">Countdown to the Event</h3>
@@ -439,7 +440,6 @@
             } else {
                 message = 'We will miss you! If you change your mind, let Littavya know.';
             }
-            // Mengganti alert dengan tindakan RSVP yang lebih realistis (misalnya, kirim ke WhatsApp)
             
             // CONTOH: Mengarahkan ke WhatsApp dengan pesan RSVP
             const name = "Guest"; // Anda dapat mengganti ini dengan cara mengambil nama tamu jika diinginkan
