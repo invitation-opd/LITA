@@ -328,10 +328,10 @@
                 
                 <div class="detail-item">
                     <span class="venue-name" style="font-size: 1.2em;">
-                        **Tuesday, October 28th, 2025** </span>
-                    <span class="venue-location" style="font-size: 1em; margin-top: 5px; opacity: 1;">
-                        7:00 PM WIB - Finish
+                        **Tuesday, October 28th, 2025**
                     </span>
+                    <span class="venue-location" style="font-size: 1em; margin-top: 5px; opacity: 1;">
+                        **8:00 PM WIB - Finish** </span>
                 </div>
 
                 <div class="detail-item">
@@ -453,7 +453,7 @@
             window.open(whatsappLink, '_blank');
         }
         
-        const targetDate = new Date("Oct 28, 2025 19:00:00").getTime(); // Target Date 28 Oktober 2025 (Hari Selasa)
+        const targetDate = new Date("Oct 28, 2025 20:00:00").getTime(); // Target Date 28 Oktober 2025 jam 8 malam
         const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
             const distance = targetDate - now;
